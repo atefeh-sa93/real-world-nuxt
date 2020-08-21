@@ -10,7 +10,21 @@ import navbar from '~/components/NavBar';
 export default {
   components:{
     navbar
-  }
+  },
+
+  head() {
+    return {
+      titleTemplate: '%s - Real World Events',
+
+      meta: [
+        {
+          hid:'description',
+          name: 'description',
+          content: 'where we write our page descripton',
+        }
+      ],
+    }
+  },
 }
 </script>
 
