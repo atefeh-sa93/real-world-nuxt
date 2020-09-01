@@ -1,21 +1,35 @@
 <template>
     <div>
-        <h1>Event #{{id}}</h1>
+        <h1>{{event.title}}</h1>
     </div>
 </template>
 <script>
 export default {
   head() {
     return {
-      title: 'Events #' + this.id ,
+      title: this.event.title ,
 
       meta: [
         {
           hid:'description',
           name: 'description',
-          content: 'what do you want to know about event' + this.id,
+          content: 'what do you want to know about event' + this.event.title,
         }
       ],
+    }
+  },
+
+  async asyncData({ $axios, error, params }) {
+    try{
+      const event =  await $axios.$get('events/' + params.id)
+      return {
+        event
+      }
+    } catch(e) {
+      error ({
+        statusCode: 503,
+        message:'Unable to show',
+      })
     }
   },
 
