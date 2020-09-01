@@ -26,6 +26,10 @@ export default {
     ]
   },
   /*
+  ** Customize the progress-bar color
+  */
+  loading: {color: '#71c7af', height: '5px'},
+  /*
   ** Global CSS
   */
   css: [
@@ -57,7 +61,12 @@ export default {
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
-  axios: {},
+  axios: {
+    baseURL: process.env.BASE_URL || 'http://localhost:3000/api',
+  },
+  serverMiddleware: {
+    '/api': '~/mock/server'
+  },
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
